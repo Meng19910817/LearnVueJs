@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .active{
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!--This cannot use mustache grammer, mustache can be only used in content-->
+    <img v-bind:src="imgURL" alt="">
+    <!-- : is the short form for v-bind-->
+    <img :src="imgURL" alt="">
+    <h2 :class="active">{{message}}</h2>
+
+    <!--{} is an object,key-value-->
+    <!-- <h2 v-bind:class="{className1:boolean, className2:boolean}">{{message}}</h2> -->
+    <h2 v-bind:class="{active : isActive, line : isLine}">{{message}}</h2>
+    <!--Object grammer-->
+    <h2 v-bind:class="getClasses()">{{message}}</h2>
+    <!--Array grammer, className1 and className1 are variable-->
+    <h2 class="title" :class="[className1, className2]">{{message}}</h2>
+    <h2 class="title" :class="['className1', 'className2']">{{message}}</h2>
+
+    <button v-on:click="change">Change</button>
+
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+      const app = new Vue({
+      el:"#app",
+      data:{
+        imgURL:"https://tse2-mm.cn.bing.net/th/id/OIP.nKkm0wnm9J-Ko2rny3mAzAHaIo?w=141&h=164&c=7&o=5&pid=1.7",
+        active:"active",
+        message: "Hello Vue.js",
+        isActive:true,
+        isLine:false,
+        className1:"aaa",
+        className2:"bbb"
+      },
+      methods:{
+        change:function(){
+          this.isActive = !this.isActive
+        },
+        getClasses:function(){
+          return  {active : this.isActive, line : this.isLine}
+        }
+         
+      }
+    })   
+  </script>
+</body>
+</html>

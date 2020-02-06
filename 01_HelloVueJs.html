@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HelloVueJS</title>
+</head>
+<body>
+    <div id="app">
+        <h3>{{message}}</h3>
+        <div v-for="item in frameworks">{{item}}</div>
+        <h2>number:{{counter}}</h2>
+        <!-- <button v-on:click="counter++">+</button>
+        <button v-on:click="counter--">-</button> -->
+        <button v-on:click="increment()">+</button>
+        <button v-on:click="decrement()">-</button>
+    </div>
+<script src="./js/vue.js"></script>
+<script>
+    //vue.js comes from Vue website.
+    const app = new Vue({
+        el:'#app',
+        data:{
+            message:'Hello Vue.js',
+            frameworks:['Vue', 'React', 'Angular'],
+            counter : 0
+        },
+        methods:{
+            increment(){
+                this.counter ++ 
+            },
+            decrement(){
+                this.counter --
+            }
+        }
+    })
+    
+</script>  
+</body>
+</html>
