@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<div id="app">
+  <button @click="changClick">change</button>
+  <div v-if="isShow">
+    <h2>hi</h2>
+  </div>
+  <div v-else>
+    <h2>bye</h2>
+  </div>
+
+  <!--1-->
+  <h2 v-if="score > 90">A</h2>
+  <h2 v-else-if="score > 80">B</h2>
+  <h2 v-else-if="score > 60">C</h2>
+  <h2 v-else>D</h2>
+  <!--2-->
+  <h2>{{result}}</h2>
+</div>
+<body>
+  <script src="./js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el:"#app",
+      data:{
+        isShow:true,
+        score:99
+      },
+      methods:{
+        changClick(){
+          this.isShow = !this.isShow
+        }
+      },
+      computed:{
+        result:function(){
+          let result = ""
+          if (this.score > 90){
+            let result = "A"
+          } else if (this.score > 80){
+            let result = "B"
+          } else if (this.score >60){
+            let result = "C"
+          } else {
+            let result = "D"
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>

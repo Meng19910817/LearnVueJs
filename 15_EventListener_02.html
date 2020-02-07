@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<div id="app">
+  <button @click="btnClick1">BTN1</button>
+  <button @click="btnClick1()">BTN1</button>
+
+  <button @click="btnClick2">BTN2</button>
+  <button @click="btnClick3(123, abc, $event)">BTN3</button>
+</div>
+<body>
+  <script src="./js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el:"#app",
+      data:{
+        message:0,
+        abc:"string"
+      },
+      methods:{
+        btnClick1(){
+          console.log("btnClickFunction execute")
+        },
+        btnClick2(num){
+          console.log(num)
+        },
+        btnClick3(num, abc, event){
+          console.log(num, abc, event)
+        }
+      }
+    })
+  </script>
+</body>
+</html>
