@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .active{
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li v-on:click="change(index)" 
+          :class="{active: currentIndex===index}" 
+          v-for="(item,index) in frameworks" 
+          :key=index>
+          {{index}} {{item}}
+      </li>
+    </ul>
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el:"#app",
+      data:{
+        frameworks:["Vue", "React", "Angular"],
+        currentIndex:0
+      },
+      methods:{
+        change:function(index){
+          this.currentIndex = index
+          
+        }
+      }
+    })
+  </script>
+</body>
+</html>

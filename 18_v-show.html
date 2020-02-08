@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<div id="app">
+  <!--v-if adds or removes elements-->
+  <h2 v-if="isShow" id="if">{{message}}</h2>
+  <!--v-show adds css into elements, display:none-->
+  <h2 v-show="isShow" id="show">{{message}}</h2>
+</div>
+<body>
+  <script src="./js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el:"#app",
+      data:{
+        message:"Hello Vue.js",
+        isShow:false
+      }
+    })
+  </script>
+</body>
+</html>

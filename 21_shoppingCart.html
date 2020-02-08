@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+ <div id="app">
+   <div v-if="books.length">
+    <h2>TotalPrice:{{totalPrice | showPrice}}</h2>
+    <table>
+      <thead>
+       <tr>
+         <th></th>
+         <th>Name</th>
+         <th>Date</th>
+         <th>Price</th>
+         <th>Numbers</th>
+         <th>Operation</th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr v-for="(book,index) in books">
+         <td>{{book.id}}</td>
+         <td>{{book.name}}</td>
+         <td>{{book.date}}</td>
+         <td>{{book.price | showPrice}}</td>
+         <td>
+           <button @click="decrement(index)" :disabled="book.numbers <= 1">-</button>
+           {{book.numbers}}
+           <button @click="increment(index)">+</button>
+         </td>
+         <td><button @click="removeBtn(index)">remove</button></td>
+       </tr>
+      </tbody> 
+    </table>
+   </div>
+   <h2 v-else>Shopping Cart is empty!</h2>
+ </div>
+<body>
+  <script src="./js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el:"#app",
+      data:{
+        books:[
+            {
+              id:1,
+              name:"Java",
+              date:"2019-3-2",
+              price:56,
+              numbers:1
+            },
+            {
+              id:2,
+              name:"Python",
+              date:"2019-3-2",
+              price:78,
+              numbers:1
+            },
+            {
+              id:3,
+              name:"Go",
+              date:"2019-3-2",
+              price:132,
+              numbers:1
+            }
+          ]
+      },
+      filters:{
+        showPrice(price){
+          return "$" + price.toFixed(2)
+        }
+      },
+      methods:{
+        increment(index){
+          return this.books[index].numbers++
+          
+        },
+        decrement(index){
+          return this.books[index].numbers--
+        },
+        removeBtn(index){
+          this.books.splice(index, 1)
+        }
+      },
+      computed :{
+        totalPrice(){
+          let totalPrice  = 0
+          for(let book of this.books){
+            console.log("price = " + book.price + ",numbers = "  + book.numbers)
+            totalPrice += book.price * book.numbers
+          }
+          return totalPrice
+        }
+      }
+    })
+  </script>
+</body>
+</html>
