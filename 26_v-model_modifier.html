@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!--it works if the element loses focus or press enter-->
+    <input type="text" v-model.lazy="message">
+    <h2>{{message}}</h2>
+
+    <input type="number" v-model.number="age">
+    <h2>{{typeof age}}</h2>
+
+    <input type="text" v-model.trim="words">
+    <h2>{{words}}</h2>
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el:"#app",
+      data:{
+        message:"Hello, Vue.js",
+        age: "",
+        words:""
+      }
+    })
+  </script>
+</body>
+</html>

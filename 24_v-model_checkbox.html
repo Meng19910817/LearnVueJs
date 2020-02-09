@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!--single selected-->
+    <label for="agree">
+      <input type="checkbox" id="agree" v-model="isAgree">Agree
+    </label>
+    <h2>selected:{{isAgree}}</h2>
+    <button :disabled="!isAgree">Next</button>
+
+    <!--double selected-->
+    <input type="checkbox" value="Java" v-model="hobbies">Java
+    <input type="checkbox" value="Python" v-model="hobbies">Python
+    <input type="checkbox" value="Go" v-model="hobbies">Go
+    <h2>selected:{{hobbies}}</h2>
+  </div>
+
+  <script src="./js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        isAgree: false,
+        hobbies: []
+      }
+    })
+  </script>
+</body>
+
+</html>
