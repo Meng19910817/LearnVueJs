@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <cpn :clanguages="languages" :cmessage="message"></cpn>
+  </div>
+
+  <template  id="cpn">
+    <div>
+      <ul>
+        <li v-for="item in clanguages">{{item}}</li>
+      </ul>
+      <h2>{{cmessage}}</h2>
+    </div>
+  </template>
+      
+ 
+  <script src="./js/vue.js"></script>
+  <script>
+    const cpn = {
+      template:"#cpn",
+      // props:["clanguages", "cmessage"]
+      props:{
+        clanguages:{
+          type:Array,
+          default(){
+            return {}
+          },
+          required:true
+        },
+        cmessage:{
+          type: String,
+          required:true
+        }
+      }
+    }
+    //if attributes in props are named in Camel case, the attributes behind v-bind must be connected with hyphen
+    const app = new Vue({
+      el:"#app",
+      components:{
+        cpn
+      },
+      data:{
+        languages:["Java", "Python", "Go"],
+        message:"Hello, Vue.js"
+      }
+    })
+  </script>
+</body>
+</html>

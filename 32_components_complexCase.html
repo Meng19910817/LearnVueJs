@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <cpn :number1="n1" 
+         :number2="n2"
+         @cpnclick1="cpnClick1"
+         @cpnclick2="cpnClick2"/>
+  </div>
+  <template id="cpn">
+    <div>
+      <h2>props:{{number1}}</h2>
+      <h2>data:{{dnumber1}}</h2>
+      number1: <input type="text" :value="dnumber1" 
+                                  @input="dnumber1Func($event)">
+      
+      <h2>props:{{number2}}</h2>
+      <h2>data:{{dnumber2}}</h2>
+      number2:<input type="text" :value="dnumber2" 
+                                 @input="dnumber2Func($event)">
+    </div>
+  </template>
+  <script src="./js/vue.js"></script>
+  <script>
+    /**
+     * Requirement Description
+     * 1.Parents transfer data to children components
+     * 2.Children components transfer data to parents(Two-way blinding)
+     * 3.The second value is as 100 times as the first value
+     * 4.The first value is 1% of the second one
+     * 
+     **/
+    const cpn = {
+      template:"#cpn",
+      props:{
+        number1:Number,
+        number2:Number
+      },
+      data(){
+        return {
+          dnumber1:this.number1,
+          dnumber2:this.number2
+        }
+      },
+      methods:{
+        dnumber1Func(event){
+          this.dnumber1 = event.target.value
+          this.$emit("cpnclick1", this.dnumber1)
+
+          this.dnumber2 = this.dnumber1 * 100
+          this.$emit("cpnclick2", this.dnumber2)
+        },
+        dnumber2Func(event){
+          this.dnumber2 = event.target.value
+          this.$emit("cpnclick2", this.dnumber2)
+
+          this.dnumber1 = this.dnumber2 / 100
+          this.$emit("cpnclick1", this.dnumber1)
+        }
+      }
+    }
+    const ap= new Vue({
+      el:"#app",
+      data:{
+        n1:1,
+        n2:2
+      },
+      components:{
+        cpn
+      },
+      methods:{
+        cpnClick1(value){
+          this.n1 = parseInt(value)
+        },
+        cpnClick2(value){
+          this.n2 = parseInt(value)
+        }
+      }
+    })
+  </script>
+</body>
+</html>
