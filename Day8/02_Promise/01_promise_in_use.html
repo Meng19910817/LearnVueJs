@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // new Promise((resolve, reject)=>{
+    //   setTimeout(()=>{
+    //     //resolve("Hello, Vuejs")
+    //     reject("小何是傻瓜")
+    //   }, 1000)
+    // }).then((data)=>{
+    //   console.log(data)
+    // }).catch((string)=>{
+    //   console.log(string)
+    // })
+
+    // new Promise((resolve, reject)=>{
+    //   setTimeout(()=>{
+    //     // resolve("Hello, Echo")
+    //     reject("小何是小天才")
+    //   })
+    // }).then((data)=>{
+    //     console.log(data)
+    //   },(ewqeqwe)=>{
+    //     console.log(ewqeqwe)
+    // })
+
+
+    Promise.all([
+      new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+          resolve({
+            name:"Mengyu"
+          })
+        }, 1000)
+        
+      }),
+      new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+          resolve({
+            name:"Echo"
+          })
+        }, 2500)
+      })
+    ]).then(data=>{
+      console.log(data)
+    })
+
+  </script>
+</body>
+</html>

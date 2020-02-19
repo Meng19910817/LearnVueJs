@@ -68,3 +68,7 @@ new Vue({
     cpn
   }
 })
+
+//plugins
+//1.webpack
+//2.html-webpack-plugin
